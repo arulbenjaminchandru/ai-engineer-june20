@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Developer Mastery Program — Arul Benjamin Chandru E</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0f1f3d;
+  --navy2:   #1a3460;
+  --amber:   #d4820a;
+  --amber2:  #f0a930;
+  --amber3:  #fde8b8;
+  --amber4:  #fff8ec;
+  --teal:    #0d6b5e;
+  --teal2:   #e6f4f2;
+  --red:     #b91c1c;
+  --red2:    #fef2f2;
+  --cream:   #fdfaf5;
+  --paper:   #f7f3ed;
+  --warm100: #f0ebe3;
+  --warm200: #e0d9ce;
+  --warm400: #9b8f80;
+  --warm600: #5c5045;
+  --ink:     #1c1410;
+  --sh:      rgba(15,31,61,0.08);
+  --sh2:     rgba(15,31,61,0.14);
+  --sh3:     rgba(212,130,10,0.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);cursor:none;overflow-x:hidden}
+
+/* CURSOR */
+#cur{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;mix-blend-mode:multiply}
+#cdot{width:8px;height:8px;border-radius:50%;background:var(--amber);position:absolute;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+#cring{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--amber);position:absolute;transform:translate(-50%,-50%);transition:width .35s cubic-bezier(.25,.46,.45,.94),height .35s cubic-bezier(.25,.46,.45,.94),border-color .2s,opacity .2s;opacity:.55}
+body.hov #cdot{width:14px;height:14px;background:var(--navy)}
+body.hov #cring{width:52px;height:52px;border-color:var(--navy);opacity:.25}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;height:68px;background:rgba(253,250,245,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--warm200);transition:height .3s,box-shadow .3s}
+nav.sc{height:56px;box-shadow:0 4px 24px var(--sh)}
+.logo{font-family:'Playfair Display',serif;font-weight:800;font-size:1.2rem;color:var(--navy);letter-spacing:-.02em}
+.logo em{color:var(--amber);font-style:normal}
+.nlinks{display:flex;gap:1.8rem;list-style:none}
+.nlinks a{color:var(--warm600);text-decoration:none;font-size:.875rem;font-weight:500;position:relative;padding-bottom:2px;transition:color .2s}
+.nlinks a::after{content:'';position:absolute;bottom:0;left:0;right:100%;height:1.5px;background:var(--amber);transition:right .3s cubic-bezier(.25,.46,.45,.94)}
+.nlinks a:hover{color:var(--amber)}
+.nlinks a:hover::after,.nlinks a.act::after{right:0}
+.nlinks a.act{color:var(--navy)}
+.ncta{background:var(--navy)!important;color:#fff!important;font-weight:700!important;padding:.5rem 1.4rem;border-radius:6px;font-size:.82rem!important;box-shadow:0 2px 12px var(--sh2);transition:background .2s,transform .15s,box-shadow .2s!important}
+.ncta::after{display:none!important}
+.ncta:hover{background:var(--amber)!important;transform:translateY(-1px);box-shadow:0 6px 20px var(--sh3)!important}
+
+/* HERO */
+#hero{min-height:100vh;background:linear-gradient(155deg,var(--cream) 0%,var(--amber4) 45%,#fef3da 70%,var(--cream) 100%);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;padding:120px 8vw 80px;position:relative;overflow:hidden}
+.hdeco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hc{position:absolute;border-radius:50%;border:1px solid rgba(212,130,10,.1)}
+.hc1{width:700px;height:700px;top:-250px;right:-200px}
+.hc2{width:450px;height:450px;top:-60px;right:30px}
+.hc3{width:220px;height:220px;top:80px;right:140px;background:radial-gradient(circle,rgba(212,130,10,.07),transparent)}
+.hlines{position:absolute;bottom:0;left:0;right:0;height:180px;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(212,130,10,.05) 79px,rgba(212,130,10,.05) 80px);mask-image:linear-gradient(to top,black,transparent)}
+.hleft{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:var(--amber3);color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.4rem 1rem;border-radius:999px;border:1px solid rgba(212,130,10,.3);margin-bottom:1.5rem;opacity:0;transform:translateY(14px);animation:up .6s .1s forwards}
+.ldot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 0 rgba(212,130,10,.4);animation:lp 2s infinite}
+@keyframes lp{0%{box-shadow:0 0 0 0 rgba(212,130,10,.4)}70%{box-shadow:0 0 0 8px rgba(212,130,10,0)}100%{box-shadow:0 0 0 0 rgba(212,130,10,0)}}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,4.5vw,4rem);font-weight:800;line-height:1.08;letter-spacing:-.025em;color:var(--navy);margin-bottom:.6em;opacity:0;transform:translateY(18px);animation:up .7s .25s forwards}
+h1 .a{color:var(--amber)}
+h1 em{font-style:italic;color:var(--navy2)}
+.hdesc{font-size:1rem;color:var(--warm600);line-height:1.75;max-width:480px;margin-bottom:2rem;opacity:0;transform:translateY(14px);animation:up .7s .4s forwards}
+.hdesc strong{color:var(--navy);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:2.2rem;opacity:0;transform:translateY(14px);animation:up .7s .55s forwards}
+.chip{display:flex;align-items:center;gap:.4rem;background:white;border:1px solid var(--warm200);color:var(--warm600);font-size:.78rem;font-weight:500;padding:.32rem .85rem;border-radius:999px;box-shadow:0 1px 4px var(--sh);transition:all .2s}
+.chip:hover{border-color:var(--amber);color:var(--amber);box-shadow:0 3px 12px var(--sh3);transform:translateY(-1px)}
+.hbtns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;transform:translateY(14px);animation:up .7s .7s forwards}
+.ba{background:var(--amber);color:white;font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;padding:.85rem 2rem;border-radius:8px;text-decoration:none;border:none;cursor:none;box-shadow:0 4px 20px var(--sh3);transition:all .22s;display:inline-flex;align-items:center;gap:.5rem}
+.ba:hover{background:var(--amber2);transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,130,10,.32)}
+.bo{background:transparent;color:var(--navy);font-family:'Outfit',sans-serif;font-weight:600;font-size:.95rem;padding:.85rem 2rem;border-radius:8px;text-decoration:none;border:1.5px solid var(--warm200);cursor:none;transition:all .22s}
+.bo:hover{border-color:var(--navy);background:var(--navy);color:white}
+.hright{position:relative;z-index:1}
+.icard{background:white;border-radius:20px;padding:2.5rem;box-shadow:0 24px 64px var(--sh2),0 4px 16px var(--sh);border:1px solid var(--warm100);opacity:0;transform:translateX(28px) translateY(10px);animation:si .8s .5s forwards;position:relative;overflow:hidden}
+.icard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--navy),var(--amber))}
+.iav{width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,var(--navy),var(--amber));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.5rem;color:white;margin-bottom:1.1rem;font-weight:700}
+.iname{font-family:'Playfair Display',serif;font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:.2rem}
+.ititle{font-size:.78rem;color:var(--warm400);margin-bottom:1.1rem;line-height:1.5}
+.itags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.4rem}
+.itag{background:var(--amber4);color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.06em;padding:.22rem .6rem;border-radius:4px;border:1px solid rgba(212,130,10,.2)}
+.bbox{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:12px;padding:1.1rem 1.4rem;color:white}
+.blbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.25rem;font-family:'JetBrains Mono',monospace}
+.bdate{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--amber2)}
+.btime{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:.15rem}
+@keyframes up{to{opacity:1;transform:translateY(0)}}
+@keyframes si{to{opacity:1;transform:translateX(0) translateY(0)}}
+
+/* STATS BAND */
+#stats{background:var(--navy);padding:3.5rem 6vw;position:relative;overflow:hidden}
+#stats::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.015) 40px,rgba(255,255,255,.015) 41px)}
+.srow{display:grid;grid-template-columns:repeat(6,1fr);gap:0;max-width:1200px;margin:0 auto;position:relative}
+.si{text-align:center;padding:1.5rem 1rem;border-right:1px solid rgba(255,255,255,.07);opacity:0;transform:translateY(18px);transition:all .5s}
+.si:last-child{border-right:none}
+.si.v{opacity:1;transform:translateY(0)}
+.sn{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,2.2vw,2.4rem);font-weight:800;color:var(--amber2);line-height:1;margin-bottom:.3rem}
+.sl{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:.2rem}
+.ss{font-size:.65rem;color:rgba(255,255,255,.38);line-height:1.45}
+
+/* SECTIONS */
+.sec{padding:7rem 8vw}
+.sin{max-width:1100px;margin:0 auto}
+.seb{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem;opacity:0;transform:translateX(-16px);transition:all .5s}
+.seb::before{content:'';width:22px;height:1.5px;background:var(--amber);display:block;flex-shrink:0}
+.seb.v{opacity:1;transform:translateX(0)}
+.sti{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.7rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;color:var(--navy);margin-bottom:.7rem;opacity:0;transform:translateY(14px);transition:all .5s .1s}
+.sti.v{opacity:1;transform:translateY(0)}
+.sti .a{color:var(--amber)}
+.sde{font-size:.975rem;color:var(--warm400);line-height:1.75;max-width:540px;margin-bottom:3rem;opacity:0;transform:translateY(14px);transition:all .5s .15s}
+.sde.v{opacity:1;transform:translateY(0)}
+
+/* FREE */
+#free{background:var(--teal2);border-top:1px solid rgba(13,107,94,.12);border-bottom:1px solid rgba(13,107,94,.12)}
+.fg{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+.fc{background:white;border-radius:16px;padding:1.9rem;border:1px solid rgba(13,107,94,.1);box-shadow:0 4px 18px rgba(13,107,94,.07);display:flex;gap:1.2rem;align-items:flex-start;opacity:0;transform:translateY(22px);transition:all .5s}
+.fc:hover{transform:translateY(-4px)!important;box-shadow:0 16px 40px rgba(13,107,94,.14);border-color:rgba(13,107,94,.28)}
+.fc.v{opacity:1;transform:translateY(0)}
+.fc.star{grid-column:1/-1;background:linear-gradient(135deg,var(--amber4),white);border-color:rgba(212,130,10,.22);box-shadow:0 8px 28px rgba(212,130,10,.1)}
+.fc.star:hover{box-shadow:0 20px 50px rgba(212,130,10,.18);border-color:var(--amber)}
+.fi{font-size:2.1rem;flex-shrink:0}
+.ft{font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.3rem}
+.fd{font-size:.8rem;color:var(--warm400);line-height:1.6}
+.fb{display:inline-block;margin-top:.55rem;background:var(--amber);color:white;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.08em;padding:.2rem .65rem;border-radius:4px;text-transform:uppercase}
+
+/* CURRICULUM */
+#curriculum{background:var(--paper)}
+.mtabs{display:flex;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.mt{font-family:'Outfit',sans-serif;font-weight:600;font-size:.83rem;padding:.58rem 1.35rem;border-radius:8px;cursor:none;border:1.5px solid var(--warm200);background:white;color:var(--warm400);transition:all .2s;box-shadow:0 1px 4px var(--sh)}
+.mt.act{background:var(--navy);color:white;border-color:var(--navy);box-shadow:0 4px 16px var(--sh2)}
+.mt:hover:not(.act){border-color:var(--amber);color:var(--amber)}
+.mh{border-radius:14px;padding:1.7rem 2.2rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.mh1{background:linear-gradient(135deg,#0f1f3d 0%,#1e4480 100%)}
+.mh2{background:linear-gradient(135deg,#7c3a00 0%,#c46a00 100%)}
+.mh3{background:linear-gradient(135deg,#0a4a3e 0%,#0d6b5e 100%)}
+.mb{display:inline-block;margin-bottom:.7rem;background:rgba(255,255,255,.14);color:rgba(255,255,255,.78);font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.1em;padding:.2rem .7rem;border-radius:4px}
+.mt2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:white}
+.ms{font-size:.85rem;color:rgba(255,255,255,.5);margin-top:.3rem}
+.wcard{background:white;border-radius:14px;margin-bottom:1rem;border:1px solid var(--warm100);box-shadow:0 2px 10px var(--sh);overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.wcard:hover{box-shadow:0 8px 28px var(--sh2);border-color:var(--warm200)}
+.wh{display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.6rem;cursor:none;transition:background .2s}
+.wh:hover{background:var(--amber4)}
+.wnum{background:var(--amber4);color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;padding:.28rem .72rem;border-radius:6px;border:1px solid rgba(212,130,10,.2);white-space:nowrap}
+.wtop{font-weight:700;font-size:.93rem;color:var(--navy);flex:1}
+.warr{width:26px;height:26px;border-radius:50%;background:var(--warm100);color:var(--warm400);display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:all .3s;flex-shrink:0}
+.wcard.op .warr{background:var(--navy);color:white;transform:rotate(45deg)}
+.wbody{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.wcard.op .wbody{max-height:500px}
+.win{padding:0 1.6rem 1.6rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.db{background:var(--cream);border-radius:10px;padding:.95rem 1.05rem;border:1px solid var(--warm100)}
+.dl{font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.45rem}
+.dl.sat{color:var(--navy)}
+.dl.sun{color:var(--amber)}
+.dl.wkd{color:var(--teal)}
+.dt{font-size:.78rem;color:var(--warm600);line-height:1.55}
+
+/* SKILLS TABLE */
+#skills{background:var(--cream)}
+.stbl{width:100%;border-collapse:separate;border-spacing:0 4px}
+.stbl thead th{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--warm400);padding:.5rem 1rem;text-align:left;border-bottom:2px solid var(--warm100)}
+.stbl tbody tr{background:white;transition:all .2s}
+.stbl tbody tr:hover{transform:translateX(4px);box-shadow:0 4px 16px var(--sh)}
+.stbl td{padding:.85rem 1rem;border-top:1px solid transparent;border-bottom:1px solid var(--warm100);vertical-align:middle}
+.stbl td:first-child{border-radius:10px 0 0 10px;border-left:1px solid var(--warm100);padding-left:1.2rem}
+.stbl td:last-child{border-radius:0 10px 10px 0;border-right:1px solid var(--warm100)}
+.stbl tbody tr:hover td{border-color:var(--warm200)}
+.sn2{font-weight:600;font-size:.87rem;color:var(--navy)}
+.sf{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.8rem;color:var(--navy2)}
+.sw{font-size:.76rem;color:var(--warm400);font-weight:500}
+.bw{width:100px}
+.bar{height:4px;background:var(--warm100);border-radius:99px;overflow:hidden}
+.bf{height:100%;border-radius:99px;width:0;transition:width 1.4s cubic-bezier(.25,.46,.45,.94);background:linear-gradient(90deg,var(--teal),#2da896)}
+.bf.ab{background:linear-gradient(90deg,var(--amber),var(--amber2))}
+.bf.rb{background:#e5a0a0}
+.ss2{display:inline-flex;align-items:center;gap:.3rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;padding:.2rem .62rem;border-radius:5px}
+.sy{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}
+.sp{background:var(--amber4);color:var(--amber);border:1px solid rgba(212,130,10,.25)}
+.sno{background:var(--red2);color:var(--red);border:1px solid #fecaca}
+
+/* PROJECTS */
+#projects{background:var(--paper)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.pc{background:white;border-radius:16px;padding:2rem;border:1px solid var(--warm100);box-shadow:0 4px 16px var(--sh);position:relative;overflow:hidden;opacity:0;transform:translateY(26px);transition:all .5s}
+.pc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:linear-gradient(180deg,transparent,rgba(212,130,10,.04));transition:height .3s}
+.pc:hover::after{height:100%}
+.pc:hover{transform:translateY(-6px)!important;box-shadow:0 20px 50px var(--sh2);border-color:var(--amber3)}
+.pc.v{opacity:1;transform:translateY(0)}
+.pn{font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:var(--warm100);line-height:1;margin-bottom:.9rem;transition:color .3s}
+.pc:hover .pn{color:var(--amber3)}
+.pname{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:.45rem}
+.pd{font-size:.8rem;color:var(--warm400);line-height:1.65;margin-bottom:1.1rem}
+.ptags{display:flex;flex-wrap:wrap;gap:.38rem}
+.pt{font-family:'JetBrains Mono',monospace;font-size:.6rem;background:var(--amber4);color:var(--amber);border:1px solid rgba(212,130,10,.18);padding:.18rem .52rem;border-radius:4px}
+
+/* PREREQS */
+#prereqs{background:var(--cream)}
+.prg{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.prc{background:white;border-radius:18px;padding:2.2rem;border:1px solid var(--warm100);box-shadow:0 4px 18px var(--sh);opacity:0;transform:translateY(22px);transition:all .5s}
+.prc.v{opacity:1;transform:translateY(0)}
+.prc:hover{box-shadow:0 12px 38px var(--sh2)}
+.pct{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;margin-bottom:1.3rem;display:flex;align-items:center;gap:.6rem}
+.pct.yes{color:#059669}
+.pct.free{color:var(--amber)}
+.pi{display:flex;gap:.72rem;margin-bottom:.95rem;align-items:flex-start}
+.pid{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.45rem}
+.pid.yes{background:#059669}
+.pid.free{background:var(--amber)}
+.pit{font-size:.855rem;color:var(--warm600);line-height:1.55}
+.pit strong{color:var(--navy)}
+
+/* SALARY */
+#salary{background:var(--paper)}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.sc2{background:white;border-radius:16px;padding:2rem;border:1px solid var(--warm100);box-shadow:0 4px 16px var(--sh);opacity:0;transform:translateY(22px);transition:all .5s;position:relative;overflow:hidden}
+.sc2::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.sc2.c1::before{background:linear-gradient(90deg,var(--navy),var(--amber))}
+.sc2.c2::before{background:linear-gradient(90deg,var(--amber),var(--amber2))}
+.sc2.c3::before{background:linear-gradient(90deg,var(--teal),#2da896)}
+.sc2:hover{transform:translateY(-5px)!important;box-shadow:0 16px 40px var(--sh2)}
+.sc2.v{opacity:1;transform:translateY(0)}
+.sl2{font-weight:700;font-size:.88rem;color:var(--navy);margin-bottom:.9rem}
+.sinr{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:var(--navy);line-height:1}
+.susd{font-size:.83rem;color:var(--warm400);font-weight:500;margin-top:.2rem;margin-bottom:.7rem}
+.snote{font-size:.77rem;color:var(--warm400);line-height:1.5;margin-bottom:.7rem}
+.sbadge{display:inline-flex;align-items:center;gap:.3rem;background:#ecfdf5;color:#059669;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;padding:.2rem .58rem;border-radius:4px;border:1px solid #a7f3d0}
+
+/* CONTACT */
+#contact{background:linear-gradient(155deg,var(--navy) 0%,#0d2b5e 100%);position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% 0%,rgba(212,130,10,.1),transparent)}
+#contact::after{content:'';position:absolute;bottom:0;left:0;right:0;height:280px;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,.018) 79px,rgba(255,255,255,.018) 80px)}
+.cin{max-width:720px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.ceb{display:inline-block;margin-bottom:1.2rem;background:rgba(212,130,10,.14);color:var(--amber2);font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;letter-spacing:.12em;padding:.32rem 1rem;border-radius:999px;border:1px solid rgba(212,130,10,.22)}
+.ctit{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.8vw,3rem);font-weight:800;letter-spacing:-.025em;color:white;line-height:1.15;margin-bottom:.9rem}
+.ctit em{font-style:italic;color:var(--amber2)}
+.csub{font-size:.975rem;color:rgba(255,255,255,.5);line-height:1.72;margin-bottom:2.4rem}
+.bp{display:inline-flex;align-items:center;gap:1.2rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);border-radius:14px;padding:1.2rem 2rem;margin-bottom:2.5rem}
+.bpd{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--amber2)}
+.bps{width:1px;height:30px;background:rgba(255,255,255,.13)}
+.bpi{font-size:.8rem;color:rgba(255,255,255,.48);line-height:1.55;text-align:left}
+.cls{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.cl{display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);border-radius:12px;padding:.85rem 1.35rem;text-decoration:none;color:rgba(255,255,255,.78);transition:all .22s;font-size:.875rem}
+.cl:hover{background:rgba(212,130,10,.14);border-color:var(--amber);color:var(--amber2);transform:translateY(-2px)}
+.cico{font-size:1.15rem}
+.cval{font-weight:500}
+.clbl{font-size:.6rem;color:rgba(255,255,255,.38);letter-spacing:.08em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+
+footer{border-top:1px solid rgba(255,255,255,.06);padding:1.8rem 6vw;text-align:center;font-size:.78rem;color:rgba(255,255,255,.22);background:var(--navy)}
+footer a{color:var(--amber2);text-decoration:none}
+
+.rev{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+.rev.v{opacity:1;transform:translateY(0)}
+
+@media(max-width:920px){
+  #hero{grid-template-columns:1fr;padding:100px 6vw 60px;gap:2rem}
+  .hright{display:none}
+  .srow{grid-template-columns:repeat(3,1fr)}
+  .pg{grid-template-columns:1fr 1fr}
+  .prg,.sg{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .nlinks{display:none}
+  .srow{grid-template-columns:repeat(2,1fr)}
+  .pg{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr}
+  .fc.star{grid-column:auto}
+  .win{grid-template-columns:1fr}
+  .mtabs{flex-wrap:wrap}
+  body{cursor:auto}
+  #cur{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"><div id="cdot"></div><div id="cring"></div></div>
+
+<nav id="nav">
+  <div class="logo">Mizpah<em>AI</em></div>
+  <ul class="nlinks">
+    <li><a href="#free">Freebies</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#skills">Job Match</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#prereqs">Eligibility</a></li>
+    <li><a href="#contact" class="ncta">Enroll Now</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hdeco">
+    <div class="hc hc1"></div><div class="hc hc2"></div><div class="hc hc3"></div>
+    <div class="hlines"></div>
+  </div>
+  <div class="hleft">
+    <div class="eyebrow"><span class="ldot"></span>Batch starting 18 April 2026</div>
+    <h1>Become an<br><span class="a">AI Developer</span><br><em>in 3 Months</em></h1>
+    <p class="hdesc">Weekend-only live program. From complete beginner to <strong>job-ready AI Engineer</strong> — building 5 real deployed projects with a seasoned industry practitioner.</p>
+    <div class="chips">
+      <div class="chip">📅 Sat &amp; Sun · 4–6 PM</div>
+      <div class="chip">🎓 12 Weekends · 48 Hrs Live</div>
+      <div class="chip">🏗️ 5 Real Projects</div>
+      <div class="chip">🏆 Claude Certified Architect - Foundations Aligned</div>
+      <div class="chip">🎁 Free Udemy Course</div>
+    </div>
+    <div class="hbtns">
+      <a href="#contact" class="ba">Contact for Enrollment →</a>
+      <a href="#curriculum" class="bo">View Curriculum</a>
+    </div>
+  </div>
+  <div class="hright">
+    <div class="icard">
+      <div class="iav">A</div>
+      <div class="iname">Arul Benjamin Chandru E</div>
+      <div class="ititle">AI Architect &nbsp;·&nbsp; Udemy Instructor</div>
+      <div class="itags">
+        <span class="itag">Claude API</span><span class="itag">MCP Protocol</span>
+        <span class="itag">RAG Systems</span><span class="itag">Agentic AI</span>
+        <span class="itag">Gen AI</span><span class="itag">Udemy</span>
+      </div>
+      <div class="bbox">
+        <div class="blbl">Next Batch</div>
+        <div class="bdate">🗓 Saturday, 18th April 2026</div>
+        <div class="btime">Sat &amp; Sun · 4:00 PM – 6:00 PM · Live Online</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="srow">
+    <div class="si"><div class="sn">#1</div><div class="sl">Fastest-Growing Job</div><div class="ss">AI Engineer — LinkedIn 2025 Global Report</div></div>
+    <div class="si"><div class="sn">56%</div><div class="sl">Salary Premium</div><div class="ss">AI skills vs standard software roles (PwC 2026)</div></div>
+    <div class="si"><div class="sn">1.3M+</div><div class="sl">New AI Roles in 2025</div><div class="ss">Demand far outstrips supply globally</div></div>
+    <div class="si"><div class="sn">78%</div><div class="sl">IT Jobs Need AI</div><div class="ss">Of all tech postings require AI skills now</div></div>
+    <div class="si"><div class="sn">12/14</div><div class="sl">Top Skills Covered</div><div class="ss">Live job posting analysis — all taught here</div></div>
+    <div class="si"><div class="sn">97M</div><div class="sl">MCP Downloads/Mo</div><div class="ss">The protocol you'll master — Feb 2026 data</div></div>
+  </div>
+</section>
+
+<section id="free" class="sec">
+  <div class="sin">
+    <div class="seb">Included Free</div>
+    <h2 class="sti">Everything You Get at <span class="a">No Extra Cost</span></h2>
+    <p class="sde">Every enrolled student receives these resources alongside live sessions — no separate purchase, no hidden costs.</p>
+    <div class="fg">
+      <div class="fc star rev"><div class="fi">🏆</div><div><div class="ft">From Basics to Brilliance: Python and Gen AI Made Simple</div><div class="fd">Arul's superhit Udemy course — free for every enrolled student. The perfect companion to master Python and Gen AI fundamentals alongside this program.</div><span class="fb">Superhit Udemy Course — Free</span></div></div>
+      <div class="fc rev" style="transition-delay:.1s"><div class="fi">📄</div><div><div class="ft">ATS Resume Templates</div><div class="fd">Job-ready resume templates optimised for Applicant Tracking Systems — formatted specifically for AI Engineer roles.</div></div></div>
+      <div class="fc rev" style="transition-delay:.18s"><div class="fi">📚</div><div><div class="ft">Complete Course Material</div><div class="fd">Slides, references, notes, and architecture diagrams for all 12 weekends. Yours to keep after the program.</div></div></div>
+      <div class="fc rev" style="transition-delay:.26s"><div class="fi">💻</div><div><div class="ft">Practice Notebooks</div><div class="fd">Hands-on Jupyter/Python notebooks for every topic — complete during weekday coursework to reinforce each weekend's session.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="curriculum" class="sec">
+  <div class="sin">
+    <div class="seb">3-Month Program</div>
+    <h2 class="sti">The <span class="a">Full Curriculum</span></h2>
+    <p class="sde">24 live weekend sessions. Saturday = concept + demo. Sunday = hands-on lab. Weekdays = guided coursework and practice notebooks.</p>
+    <div class="mtabs">
+      <button class="mt act" onclick="swM(0)">Month 1 — Foundations</button>
+      <button class="mt" onclick="swM(1)">Month 2 — Building</button>
+      <button class="mt" onclick="swM(2)">Month 3 — Advanced + Launch</button>
+    </div>
+    <div id="mp0"><div class="mh mh1"><div class="mb">Month 1 · Apr 18 – May 11</div><div class="mt2">AI Foundations</div><div class="ms">From zero to confidently working with AI APIs and building real prompts</div></div><div id="wk0"></div></div>
+    <div id="mp1" style="display:none"><div class="mh mh2"><div class="mb">Month 2 · May 16 – Jun 14</div><div class="mt2">Building Real AI Systems</div><div class="ms">Go from API calls to complete, working applications with real data</div></div><div id="wk1"></div></div>
+    <div id="mp2" style="display:none"><div class="mh mh3"><div class="mb">Month 3 · Jun 20 – Jul 13</div><div class="mt2">Advanced Systems &amp; Career Launch</div><div class="ms">Production-grade engineering, safety, evaluation and capstone delivery</div></div><div id="wk2"></div></div>
+  </div>
+</section>
+
+<section id="skills" class="sec">
+  <div class="sin">
+    <div class="seb">Job Market Analysis</div>
+    <h2 class="sti">Does This Course Match <span class="a">What Employers Want?</span></h2>
+    <p class="sde">Mapped against 1,000+ live AI Engineer job postings from 2025–2026. No data science, ML engineering, or data engineering roles included.</p>
+    <table class="stbl"><thead><tr><th>Skill Employers Want</th><th>Job Freq.</th><th>Coverage</th><th>Taught In</th><th>Status</th></tr></thead><tbody id="skrows"></tbody></table>
+    <p style="margin-top:.9rem;font-size:.76rem;color:var(--warm400)">❌ Fine-tuning is an ML Engineer specialisation requiring GPU infra — only 29% of AI Engineer postings ask for it. Intentional gap; a separate track covers it.</p>
+  </div>
+</section>
+
+<section id="projects" class="sec">
+  <div class="sin">
+    <div class="seb">Your Portfolio</div>
+    <h2 class="sti">5 Projects You Will <span class="a">Actually Ship</span></h2>
+    <p class="sde">Every project is deployed, documented, and pushed to GitHub. This is your portfolio before you ever apply for a job.</p>
+    <div class="pg" id="pgrid"></div>
+  </div>
+</section>
+
+<section id="prereqs" class="sec">
+  <div class="sin">
+    <div class="seb">Eligibility</div>
+    <h2 class="sti">Who Is This <span class="a">For?</span></h2>
+    <p class="sde">Designed for learners wanting to transition into AI Engineering — with no prior AI experience required. If you can use a laptop and know the basics of any programming language, you qualify.</p>
+    <div class="prg">
+      <div class="prc rev">
+        <div class="pct yes">✓ You Are Ready If You Have...</div>
+        <div class="pi"><span class="pid yes"></span><div class="pit"><strong>Basic computer literacy</strong> — use a laptop confidently and install software</div></div>
+        <div class="pi"><span class="pid yes"></span><div class="pit"><strong>Familiarity with any programming language</strong> — Python preferred; free Udemy course provided if needed</div></div>
+        <div class="pi"><span class="pid yes"></span><div class="pit"><strong>4 hours free on weekends</strong> — Sat + Sun 4–6 PM, consistently for 3 months</div></div>
+        <div class="pi"><span class="pid yes"></span><div class="pit"><strong>2–3 weekday hours</strong> — to complete practice notebooks between sessions</div></div>
+        <div class="pi"><span class="pid yes"></span><div class="pit"><strong>A goal</strong> — build a career in AI or add AI skills to your current role</div></div>
+      </div>
+      <div class="prc rev" style="transition-delay:.15s">
+        <div class="pct free">🎁 What We Provide Free</div>
+        <div class="pi"><span class="pid free"></span><div class="pit"><strong>"From Basics to Brilliance: Python and Gen AI Made Simple"</strong> — Arul's Udemy course, free on enrollment</div></div>
+        <div class="pi"><span class="pid free"></span><div class="pit"><strong>ATS resume templates</strong> — formatted for AI Engineer roles, ready to submit</div></div>
+        <div class="pi"><span class="pid free"></span><div class="pit"><strong>Complete course material</strong> — slides, references, architecture diagrams for all 12 weekends</div></div>
+        <div class="pi"><span class="pid free"></span><div class="pit"><strong>Practice notebooks</strong> — Jupyter notebooks per topic, with exercises and solutions</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="salary" class="sec">
+  <div class="sin">
+    <div class="seb">Career Outcomes</div>
+    <h2 class="sti">What This <span class="a">Unlocks</span></h2>
+    <p class="sde">Completing this program positions you for roles commanding a 56% salary premium over standard software engineering positions.</p>
+    <div class="sg">
+      <div class="sc2 c1 rev"><div class="sl2">Entry-Level AI Engineer</div><div class="sinr">₹8L – ₹14L</div><div class="susd">$85K – $130K globally</div><div class="snote">Direct outcome with portfolio projects on GitHub</div><span class="sbadge">✓ This Program</span></div>
+      <div class="sc2 c2 rev" style="transition-delay:.1s"><div class="sl2">Mid-Level AI Engineer</div><div class="sinr">₹14L – ₹28L</div><div class="susd">$130K – $200K globally</div><div class="snote">After 1 year of experience applying these skills on the job</div><span class="sbadge">✓ Program + 1 Year Exp</span></div>
+      <div class="sc2 c3 rev" style="transition-delay:.2s"><div class="sl2">AI-Enabled Software Engineer</div><div class="sinr">₹10L – ₹25L</div><div class="susd">$90K – $160K globally</div><div class="snote">Add AI to any existing software role — immediate value</div><span class="sbadge">✓ Immediate Value</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="sec">
+  <div class="sin">
+    <div class="cin">
+      <div class="ceb">Enrollment Open — Limited Seats</div>
+      <h2 class="ctit">Ready to Become an<br><em>AI Developer?</em></h2>
+      <p class="csub">Seats are kept small for personalised attention. Contact Arul directly to enquire about fees, confirm your seat, and get your free Udemy course access immediately on enrollment.</p>
+      <div class="bp">
+        <div><div style="font-size:.6rem;color:rgba(255,255,255,.38);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem">First Session</div><div class="bpd">🗓 Saturday, 18th April 2026</div></div>
+        <div class="bps"></div>
+        <div class="bpi">Saturday &amp; Sunday<br>4:00 PM – 6:00 PM<br>Live Online · 3 Months</div>
+      </div>
+      <div class="cls">
+        <a href="mailto:arulbenjaminchandru@gmail.com" class="cl"><span class="cico">📧</span><div><div class="clbl">Email</div><div class="cval">arulbenjaminchandru@gmail.com</div></div></a>
+        <a href="https://wa.me/919894481283" class="cl" target="_blank"><span class="cico">📱</span><div><div class="clbl">WhatsApp / Call</div><div class="cval">+91-9894481283</div></div></a>
+        <a href="https://www.linkedin.com/in/arulbenjamin" class="cl" target="_blank"><span class="cico">🔗</span><div><div class="clbl">LinkedIn</div><div class="cval">linkedin.com/in/arulbenjamin</div></div></a>
+      </div>
+      <a href="mailto:arulbenjaminchandru@gmail.com" class="ba" style="font-size:1rem;padding:1rem 2.5rem">Contact for Enrollment &amp; Fees →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Arul Benjamin Chandru E · AI Developer Mastery Program</p>
+  <p style="margin-top:.4rem"><a href="mailto:arulbenjaminchandru@gmail.com">arulbenjaminchandru@gmail.com</a> · +91-9894481283 · <a href="https://www.linkedin.com/in/arulbenjamin" target="_blank">linkedin.com/in/arulbenjamin</a></p>
+</footer>
+
+<script>
+const wkds=[
+  [{l:"Weekend 1 · Apr 18–19",t:"How AI & LLMs Work",sat:"What is an LLM? Tokens, training, prediction — no mathematics. Key parameters: temperature, context window, models explained clearly.",sun:"Your first Claude API call — send a prompt, read the response, inspect token usage. Build a working Python script from scratch.",wkd:"Free Udemy: Python & Gen AI Made Simple — complete Module 1. Practice notebook: API setup and first completions."},
+   {l:"Weekend 2 · Apr 25–26",t:"Prompt Engineering",sat:"Anatomy of a prompt: system message, user role, assistant response. Techniques: few-shot, chain-of-thought, structured JSON output.",sun:"Build a document summariser that outputs structured JSON using Claude and XML-tagged prompts.",wkd:"Free Udemy: Gen AI foundations module. Practice notebook: prompt iteration — 3 versions, compare outputs."},
+   {l:"Weekend 3 · May 2–3",t:"Tool Use — Giving AI Hands",sat:"What is tool use? How the AI decides to call an external function. The tool call loop: AI → tool → result → AI continues.",sun:"Build a 2-tool assistant: calculator + weather lookup using Claude. Watch it choose the right tool automatically.",wkd:"Coursework: Design a tool schema for a repetitive task in your own domain. Practice notebook: tool call exercises."},
+   {l:"Weekend 4 · May 9–10",t:"Memory & Conversations",sat:"Why AI forgets everything — and how to fix it. Stateless vs stateful. Sliding windows and prompt caching explained simply.",sun:"Build a multi-turn chatbot with a sliding memory window. Add a summarisation step that compresses old history automatically.",wkd:"Coursework: Extend chatbot to handle context overflow gracefully. Practice notebook: memory patterns."}],
+  [{l:"Weekend 5 · May 16–17",t:"Embeddings & Semantic Search",sat:"What are embeddings? How AI finds meaning in text — not just keywords. Cosine similarity and vector databases in plain terms.",sun:"Build a semantic search engine over 50 documents using ChromaDB. Compare keyword vs semantic search results.",wkd:"Practice notebook: embedding exercises — test with your own text dataset and document the differences."},
+   {l:"Weekend 6 · May 30–31",t:"RAG — Connect AI to Your Data",sat:"RAG pipeline: chunk → embed → store → retrieve → generate. Chunking strategies. Grounding — Claude answers only from your data, no guessing.",sun:"Build a PDF Q&A app: upload any document, ask Claude questions, get grounded answers. Test 3 different chunk sizes.",wkd:"Practice notebook: RAG exercises + course material review for this week."},
+   {l:"Weekend 7 · Jun 6-7",t:"AI Project Structure & Claude Code",sat:"CLAUDE.md — the config file that makes Claude understand your project. Context, conventions, constraints, custom slash commands.",sun:"Write a production CLAUDE.md for the RAG project. Test 3 custom slash commands. Claude Code as an autonomous coding agent.",wkd:"Coursework: Write a CLAUDE.md for your Weekend 6 project and share in the next session."},
+   {l:"Weekend 8 · Jun 13-14",t:"AI Agents — AI That Acts",sat:"Agent loop: perceive → think → act → observe → repeat. Planning patterns. When agents fail and how to diagnose and fix them.",sun:"Build a goal-driven Claude agent that plans steps and uses tools to complete a multi-step task autonomously.",wkd:"Coursework: Give the agent 3 different goals — observe how it behaves, document failures and fixes."}],
+  [{l:"Weekend 9 · Jun 20-21",t:"Multi-Agent Systems",sat:"Why teams of agents beat one agent. Sequential, parallel, supervisor patterns. How agents communicate via tool outputs.",sun:"Build a 3-agent pipeline: Researcher → Analyst → Writer, all on Claude. Each agent specialised for its role.",wkd:"Coursework: Add a Reviewer agent that flags errors before final output. Practice notebook: agent communication patterns."},
+   {l:"Weekend 10 · Jun 27-28",t:"MCP — AI Connected to Everything",sat:"MCP: universal standard for connecting AI to any tool or data source. Architecture: Host ↔ Client ↔ Server. Tools, Resources, Prompts.",sun:"Build a custom MCP server — expose a DB query tool and file export resource. Connect to Claude Desktop and test live.",wkd:"Practice notebook: MCP exercises. List 5 systems in your work an MCP server could expose to Claude."},
+   {l:"Weekend 11 · Jul 4-5",t:"Safety, Evaluation & Deployment",sat:"AI Safety: prompt injection, output guardrails, responsible deployment. Evaluation: RAGAS metrics, LLM-as-judge, tracing and logging.",sun:"Run RAGAS eval on RAG app. Add guardrails. Deploy as FastAPI + Docker to a cloud free tier — get a live URL.",wkd:"Coursework: Score and fix the weakest evaluation dimension in your RAG app before the capstone."},
+   {l:"Weekend 12 · Jul 11-12",t:"Capstone — Ship Your AI Product",sat:"Architecture review + guided build sprint. Choose: RAG app / Agent system / MCP-powered tool. Instructor guidance throughout.",sun:"Live Demo Day — present your deployed AI product to the batch. Peer code review, certificate of completion.",wkd:"Final: Publish to GitHub with README, architecture diagram, and CLAUDE.md. CCAF exam path and job strategy discussion."}]
+];
+
+const skdata=[
+  ["LLM API Integration","95%","95","Weekend 1","y"],
+  ["Prompt Engineering","91%","91","Weekend 2","y"],
+  ["RAG Systems","88%","88","Weekend 5–6","y"],
+  ["Tool Use / Function Calling","83%","83","Weekend 3","y"],
+  ["API Deployment (FastAPI + Docker)","82%","82","Weekend 11","y"],
+  ["Context & Memory Management","78%","78","Weekend 4","y"],
+  ["Agentic AI Design","79%","79","Weekend 8","y"],
+  ["Vector Databases","76%","76","Weekend 5","y"],
+  ["Multi-Agent Orchestration","74%","74","Weekend 9","y"],
+  ["MCP Integration","74%","74","Weekend 10","y"],
+  ["AI Safety & Guardrails","71%","71","Weekend 11","y"],
+  ["AI Evaluation (RAGAS)","68%","68","Weekend 11","y"],
+  ["LangChain / LlamaIndex","58%","58","Wknd 5–6","p"],
+  ["Fine-tuning / Model Training","29%","29","—","n"]
+];
+
+const prjs=[
+  {n:"01",name:"AI Chatbot Engine",desc:"Streaming chatbot with tool use, conversation memory, retry logic and structured output.",tags:["Claude API","Streaming","Tool Use","Memory"]},
+  {n:"02",name:"Private Knowledge Base",desc:"Upload any PDF — ask it questions, get grounded answers. Semantic search over your own data.",tags:["RAG","ChromaDB","Embeddings","Chunking"]},
+  {n:"03",name:"AI Project Configurator",desc:"CLAUDE.md templates and custom slash commands configured for a real codebase — demonstrates AI-native development.",tags:["CLAUDE.md","Claude Code","Slash Cmds"]},
+  {n:"04",name:"Multi-Agent Research System",desc:"3 Claude agents collaborate — Researcher, Analyst, Writer — plus a Reviewer that checks before publishing.",tags:["Multi-Agent","MCP","Orchestration"]},
+  {n:"05",name:"Live Deployed AI Product",desc:"Capstone — choice of RAG app, agent system, or MCP tool. Deployed to cloud with a public URL. This is what you show at interviews.",tags:["FastAPI","Docker","Cloud","Evaluation","Safety","CLAUDE.md"],wide:true}
+];
+
+// Render weekends
+wkds.forEach((month,mi)=>{
+  const el=document.getElementById('wk'+mi);
+  month.forEach(w=>{
+    el.innerHTML+=`<div class="wcard" onclick="twk(this)">
+      <div class="wh"><span class="wnum">${w.l}</span><span class="wtop">${w.t}</span><span class="warr">+</span></div>
+      <div class="wbody"><div class="win">
+        <div class="db"><div class="dl sat">Saturday · Concept</div><div class="dt">${w.sat}</div></div>
+        <div class="db"><div class="dl sun">Sunday · Lab</div><div class="dt">${w.sun}</div></div>
+        <div class="db"><div class="dl wkd">Weekday Coursework</div><div class="dt">${w.wkd}</div></div>
+      </div></div></div>`;
+  });
+});
+
+// Render skills
+const sb=document.getElementById('skrows');
+skdata.forEach(([nm,fr,pct,wh,st])=>{
+  const sc=st==='y'?'sy':st==='p'?'sp':'sno';
+  const lb=st==='y'?'✅ Covered':st==='p'?'🟡 Concept':'❌ Separate Track';
+  const bc=st==='y'?'bf':st==='p'?'bf ab':'bf rb';
+  sb.innerHTML+=`<tr><td class="sn2">${nm}</td><td class="sf">${fr}</td><td><div class="bw"><div class="bar"><div class="${bc}" data-w="${pct}"></div></div></div></td><td class="sw">${wh}</td><td><span class="ss2 ${sc}">${lb}</span></td></tr>`;
+});
+
+// Render projects
+const pg=document.getElementById('pgrid');
+prjs.forEach((p,i)=>{
+  pg.innerHTML+=`<div class="pc rev" style="transition-delay:${i*.09}s${p.wide?';grid-column:span 2':''}">
+    <div class="pn">${p.n}</div><div class="pname">${p.name}</div><div class="pd">${p.desc}</div>
+    <div class="ptags">${p.tags.map(t=>`<span class="pt">${t}</span>`).join('')}</div>
+  </div>`;
+});
+
+// Month switch
+function swM(i){
+  document.querySelectorAll('.mt').forEach((t,j)=>t.classList.toggle('act',i===j));
+  document.querySelectorAll('#mp0,#mp1,#mp2').forEach((p,j)=>p.style.display=i===j?'block':'none');
+}
+
+// Weekend accordion
+function twk(c){
+  const was=c.classList.contains('op');
+  document.querySelectorAll('.wcard.op').forEach(x=>x.classList.remove('op'));
+  if(!was)c.classList.add('op');
+}
+
+// Custom cursor
+const cd=document.getElementById('cdot'),cr=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
+(function ar(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(ar)})();
+document.querySelectorAll('a,button,.wcard,.fc,.pc,.sc2,.chip,.cl').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+// Scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('sc',scrollY>60);
+  document.querySelectorAll('section[id]').forEach(s=>{
+    const a=document.querySelector(`.nlinks a[href="#${s.id}"]`);
+    if(a)a.classList.toggle('act',scrollY>=s.offsetTop-110&&scrollY<s.offsetTop+s.offsetHeight-110);
+  });
+});
+
+// Intersection observer
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const el=entry.target;
+    el.classList.add('v');
+    if(el.classList.contains('srow'))el.querySelectorAll('.si').forEach((s,i)=>setTimeout(()=>s.classList.add('v'),i*90));
+    el.querySelectorAll('.bf').forEach(b=>setTimeout(()=>b.style.width=b.dataset.w+'%',300));
+    io.unobserve(el);
+  });
+},{threshold:.12});
+
+document.querySelectorAll('.seb,.sti,.sde,.rev,.si,.prc,.sc2').forEach(el=>io.observe(el));
+document.querySelector('.srow')&&io.observe(document.querySelector('.srow'));
+document.querySelector('.stbl')&&io.observe(document.querySelector('.stbl'));
+</script>
+</body>
+</html>
